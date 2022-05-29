@@ -94,7 +94,7 @@
                                 <small>Category: {{photo.category.name}}</small>
                             </div>
                             <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                            
+                            <a href="{% url 'delete-venue' photo.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
                           </div>
                     </div>
                     {% empty %}
