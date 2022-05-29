@@ -3,8 +3,25 @@ from .models import Category, Photo
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-
 # Create your views here.
+
+
+def loginUser(request):
+    page = 'login'
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('gallery')
+
+    return render(request, 'photos/login_register.html', {'page': page})
+
+
+
 def gallery(request):
     user = request.user
     category = request.GET.get('category')
@@ -17,3 +34,32 @@ def gallery(request):
     categories = Category.objects.filter(user=user)
     context = {'categories': categories, 'photos': photos}
     return render(request, 'photos/gallery.html', context)
+
+
+def viewPhoto(request, pk):
+    photo = Photo.objects.get(id=pk)
+    return render(request, 'photos/photo.html', {'photo': photo})
+
+ def search_venues(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        photos = Photo.objects.filter(
+            category__name=searched)
+
+        return render(request,
+                      'photos/search_venues.html',
+                      {'searched': searched,
+                       'photos': photos})
+
+    else:
+        return render(request,
+                      'photos/search_venues.html',
+                      {})
+   
+
+
+
+
+
+
+
