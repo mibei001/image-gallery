@@ -55,6 +55,13 @@ def viewPhoto(request, pk):
         return render(request,
                       'photos/search_venues.html',
                       {})
+
+
+  # Delete a Venue
+def delete_venue(request, photo_id):
+    venue = Photo.objects.get(pk=photo_id)
+    venue.delete()
+    return redirect('gallery')                    
    
 
 
