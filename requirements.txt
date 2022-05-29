@@ -11,3 +11,5 @@ sqlparse==0.4.2
 toml==0.10.2
 whitenoise==6.1.0
 config==0.3.9
+python-decouple==3.1
+pytz==2018.5
