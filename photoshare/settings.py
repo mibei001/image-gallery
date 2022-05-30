@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
-import django_heroku
+import django_on_heroku
 import dj_database_url
 from decouple import config, Csv
 
@@ -22,8 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-&r7w0!)j)vemo0f1jnbqs505x!p)pogeq-#rbv2(4r@mmy-)$3'
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-&r7w0!)j)vemo0f1jnbqs505x!p)pogeq-#rbv2(4r@mmy-)$3'
+#SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -156,4 +156,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Configure Django App for Heroku.
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
