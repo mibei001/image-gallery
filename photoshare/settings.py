@@ -86,9 +86,9 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 if config('MODE') == "dev":
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2-binary',
             # 'NAME': config('DB_NAME'),
-            'NAME': 'cyberdeck',
+            'NAME': 'photoshare',
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASSWORD'),
             'HOST': config('DB_HOST'),
