@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Category, Photo
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from .forms import CustomUserCreationForm
 # Create your views here.
 
 
@@ -44,6 +44,7 @@ def registerUser(request):
     return render(request, 'photos/login_register.html', context)
 
 
+@login_required(login_url='login')
 def gallery(request):
     user = request.user
     category = request.GET.get('category')
@@ -58,11 +59,13 @@ def gallery(request):
     return render(request, 'photos/gallery.html', context)
 
 
+@login_required(login_url='login')
 def viewPhoto(request, pk):
     photo = Photo.objects.get(id=pk)
     return render(request, 'photos/photo.html', {'photo': photo})
 
 
+@login_required(login_url='login')
 def addPhoto(request):
     user = request.user
 
@@ -92,27 +95,3 @@ def addPhoto(request):
 
     context = {'categories': categories}
     return render(request, 'photos/add.html', context)
-
-
-def search_venues(request):
-    if request.method == "POST":
-        searched = request.POST['searched']
-        photos = Photo.objects.filter(
-            category__name=searched)
-
-        return render(request,
-                      'photos/search_venues.html',
-                      {'searched': searched,
-                       'photos': photos})
-
-    else:
-        return render(request,
-                      'photos/search_venues.html',
-                      {})
-
-
-# Delete a Venue
-def delete_venue(request, photo_id):
-    venue = Photo.objects.get(pk=photo_id)
-    venue.delete()
-    return redirect('gallery')

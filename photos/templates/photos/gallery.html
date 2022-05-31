@@ -25,41 +25,13 @@
 </head>
 
 <body class="m-5">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="">Image Gallery</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-         
-            
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'gallery' %}">Home</a>
-              </li>
-           
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'add' %}">Add Photo</a>
-              </li>
-           
-             
-           
-      
-            </ul>
-            <form class="d-flex" method=POST action="{% url 'search-venues' %}">
-              {% csrf_token %}
-      
-              <input class="form-control me-2" type="search" placeholder="Search Venues" aria-label="Search" name="searched">
-              <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
 
-    <div class="container my-5" >
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
+                {% if request.user.is_authenticated %}
+                <p>Hello {{request.user}}</p>
+                {% endif %}
                 <div class="card">
                     <div class="card-header">
                         Categories
@@ -78,6 +50,7 @@
 
 
                         <a href="{% url 'add' %}" class="btn btn-dark btn-block btn-sm m-1">Add Photo</a>
+                        <a href="{% url 'logout' %}" class="btn btn-dark btn-block btn-sm m-1">Logout</a>
                     </ul>
                 </div>
 
@@ -94,8 +67,7 @@
                                 <small>Category: {{photo.category.name}}</small>
                             </div>
                             <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                            <a href="{% url 'delete-venue' photo.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
-                          </div>
+                        </div>
                     </div>
                     {% empty %}
                     <h3>No photos...</h3>
@@ -103,7 +75,8 @@
 
 
 
-                    
+
+
 
 
 
