@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'image' %}">Home</a>
+
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          location
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="{% url 'location' location='kimihurura' %}">kimihurura</a>
+          <a class="dropdown-item" href="{% url 'location' location='kigali' %}">kimironko</a>
+          <a class="dropdown-item" href="{% url 'location' location='gasabo' %}">gasabo </a>
+        </div>
+      </div>
+
+
+      <!-- Adding a search form  -->
+      <div class="col-sm-4 col-md-4 navbar-right">
+
+        <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search image by category" name="image">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>Search</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <!-- search form end -->
+    </div>
+  </nav>
+</body>
+
+</html>
