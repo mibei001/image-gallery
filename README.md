@@ -47,4 +47,4 @@ Once started, the project can be accessed on your localhost using the address: h
 
 ## License information
   
-Copyright(c)2019 MIT LIcence
+Distributed under the MIT License. See LICENSE for more information.
